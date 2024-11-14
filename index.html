@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Antwortprüfung</title>
+    <style>
+        #feedback { color: green; font-weight: bold; }
+        #error { color: red; }
+        #hiddenContent { 
+            display: block;
+            background-color: lightblue; /* Hintergrundfarbe vor der Antwort */
+            padding: 10px;
+        }
+        /* Stil für den transparenten Zustand */
+        .transparent {
+            background-color: transparent;
+            opacity: 0.5; /* Setzt die Transparenz auf 50% */
+        }
+    </style>
+</head>
+<body>
+
+    <h3>Frage: Was ist die Hauptstadt von Deutschland?</h3>
+    <input type="text" id="answerInput" placeholder="Deine Antwort hier">
+    <button onclick="checkAnswer()">Antwort prüfen</button>
+
+    <p id="feedback"></p>
+    <p id="error"></p>
+
+    <!-- Bereich, der bei richtiger Antwort transparent gemacht wird -->
+    <div id="hiddenContent">
+        <p>Dies ist der Inhalt, der bei der richtigen Antwort transparent wird.</p>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const correctAnswer = "berlin"; // Richtige Antwort in Kleinbuchstaben
+            const userAnswer = document.getElementById("answerInput").value.trim().toLowerCase();
+            
+            // Reset the feedback messages
+            document.getElementById("feedback").textContent = "";
+            document.getElementById("error").textContent = "";
+
+            if (userAnswer === correctAnswer) {
+                document.getElementById("feedback").textContent = "Richtig!";
+                document.getElementById("hiddenContent").classList.add("transparent"); // Klasse hinzufügen
+            } else {
+                document.getElementById("error").textContent = "Leider falsch. Versuche es noch einmal.";
+            }
+        }
+    </script>
+
+</body>
+</html>
